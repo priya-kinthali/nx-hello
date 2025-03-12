@@ -1,6 +1,6 @@
 {
   "root": true,
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "import"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -23,6 +23,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
+      "plugins": ["import"], // Ensure the import plugin is included here
       "rules": {
         "import/no-extraneous-dependencies": ["error", {
           "devDependencies": [
@@ -41,6 +42,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
+      "plugins": ["import"], // Ensure the import plugin is included here
       "rules": {
         "import/no-extraneous-dependencies": ["error", {
           "devDependencies": [
