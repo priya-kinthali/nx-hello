@@ -1,0 +1,35 @@
+name: Test final
+
+on:
+  push:
+    branches:
+      - test
+  workflow_dispatch:
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+   
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      # uses: fregante/setup-node@patch-1
+      with:
+        node-version: '22.14.0'
+    # - name: Install dependencies
+    #   run: npm install
+
+    # - name: Run ESLint
+    #   run: npx eslint .
+    #   continue-on-error: true
+    - name: Install dependencies
+      run: npm install
+    - name: Lint
+      run: npx eslint .
+      continue-on-error: true
+    
